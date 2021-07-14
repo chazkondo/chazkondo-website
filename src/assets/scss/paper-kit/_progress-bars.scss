@@ -1,0 +1,33 @@
+.progress {
+    background-color: rgba(0,0,0,0) !important;
+    border-radius: $border-radius-small;
+    box-shadow: none;
+    height: 5px;
+    -webkit-transition: width linear;
+    -o-transition: width linear;
+    transition: width linear;
+}
+.progress-thin{
+    height: 4px;
+}
+.progress-bar{
+    background-color: rgba(68, 83, 100, 1);
+}
+.progress-bar-primary{
+    background-color: rgba(68, 83, 100, 1);
+}
+.progress-bar-info{
+    background-color: rgba(68, 83, 100, 1);
+}
+.progress-bar-success{
+    background-color: rgba(68, 83, 100, 1);
+}
+.progress-bar-warning{
+    background-color: rgba(68, 83, 100, 1);
+}
+.progress-bar-danger{
+    background-color: $danger-color;
+}
+.bg-omg{
+    background-color: rgba(68, 83, 100, 1);
+}
