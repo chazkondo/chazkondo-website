@@ -1,4 +1,4 @@
-#My Personal Website
+## My Personal Website
 
 Free hosting via Netlify. Jamstack gatsby webstack using Ghost blog hosted on Heroku.
 
