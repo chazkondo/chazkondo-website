@@ -33,6 +33,18 @@ export default function RunningCard({ rawRunningData, currentDate }) {
         return Math.ceil(meters * 0.0621371192) / 100
     }
 
+    function convertTime(d) {
+        d = Number(d)
+        var h = Math.floor(d / 3600)
+        var m = Math.floor((d % 3600) / 60)
+        var s = Math.floor((d % 3600) % 60)
+
+        var hDisplay = h > 0 ? h + (h == 1 ? ' hour, ' : ' hours, ') : ''
+        var mDisplay = m > 0 ? m + (m == 1 ? ' minute, ' : ' minutes, ') : ''
+        var sDisplay = s > 0 ? s + (s == 1 ? ' second' : ' seconds') : ''
+        return hDisplay + mDisplay + sDisplay
+    }
+
     function checkForSecondRun(data) {
         if (data.distance2) {
             return `<br />[ ${convertMetersToMiles(data.distance2)} miles ]`
@@ -178,6 +190,9 @@ export default function RunningCard({ rawRunningData, currentDate }) {
                                                 }:  <br />[ ${convertMetersToMiles(
                                                     value.distance
                                                 )} miles ]
+                                                <br />[ ${convertTime(
+                                    value.time
+                                )} ]
                                     ${checkForSecondRun(value)}
                                     `,
                                             }
