@@ -47,7 +47,9 @@ export default function RunningCard({ rawRunningData, currentDate }) {
 
     function checkForSecondRun(data) {
         if (data.distance2) {
-            return `<br />[ ${convertMetersToMiles(data.distance2)} miles ]`
+            return `<br />[ ${convertMetersToMiles(
+                data.distance2
+            )} miles ] <br />[ ${convertTime(data.time2)} ]`
         } else {
             return ``
         }
@@ -108,7 +110,6 @@ export default function RunningCard({ rawRunningData, currentDate }) {
             let hashmap = {}
             let filteredData = []
             rawRunningData.forEach((run, i) => {
-                console.log(run, 'what i get?')
                 if (
                     parseFloat(run.start_date_local.slice(0, 4)) < minimumYear
                 ) {
@@ -129,6 +130,7 @@ export default function RunningCard({ rawRunningData, currentDate }) {
                 } else {
                     let index = hashmap[date].location
                     filteredData[index].distance2 = run.distance
+                    filteredData[index].time2 = run.time
                     filteredData[index].count = setDistanceColor(
                         run.distance + filteredData[index].distance
                     )
