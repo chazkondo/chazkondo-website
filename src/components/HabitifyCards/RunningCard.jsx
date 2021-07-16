@@ -96,6 +96,7 @@ export default function RunningCard({ rawRunningData, currentDate }) {
             let hashmap = {}
             let filteredData = []
             rawRunningData.forEach((run, i) => {
+                console.log(run, 'what i get?')
                 if (
                     parseFloat(run.start_date_local.slice(0, 4)) < minimumYear
                 ) {
@@ -111,6 +112,7 @@ export default function RunningCard({ rawRunningData, currentDate }) {
                         count: setDistanceColor(run.distance),
                         distance: run.distance,
                         run_id: run.id,
+                        time: run.time,
                     })
                 } else {
                     let index = hashmap[date].location
