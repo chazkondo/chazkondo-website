@@ -302,6 +302,7 @@ export default function RunningCard({ rawRunningData, currentDate }) {
                                             }:  <br />[ ${convertMetersToMiles(
                                                 value.distance
                                             )} miles ]
+                                            <br />[ ${convertTime(value.time)} ]
                                 ${checkForSecondRun(value)}
                                 `,
                                         }
