@@ -126,11 +126,13 @@ export default function RunningCard({ rawRunningData, currentDate }) {
                         distance: run.distance,
                         run_id: run.id,
                         time: run.time,
+                        name: run.name,
                     })
                 } else {
                     let index = hashmap[date].location
                     filteredData[index].distance2 = run.distance
                     filteredData[index].time2 = run.time
+                    filteredData[index].name2 = run.name
                     filteredData[index].count = setDistanceColor(
                         run.distance + filteredData[index].distance
                     )
