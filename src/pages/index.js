@@ -124,11 +124,6 @@ function Index() {
                     videoDisplay={videoDisplay}
                 />
             )}
-            {/* <LightSwitch
-                backgroundDark={backgroundDark}
-                setBackgroundDark={setBackgroundDark}
-            /> */}
-            {/* {responsiveMode === `block` && ( */}
             <Swatch
                 backgroundDark={backgroundDark}
                 setBackgroundDark={setBackgroundDark}
@@ -137,7 +132,6 @@ function Index() {
                 turnOffVideo={turnOffVideo}
                 videoDisplay={videoDisplay}
             />
-            {/* )} */}
         </>
     )
 }
