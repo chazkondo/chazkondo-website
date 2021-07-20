@@ -47,9 +47,13 @@ export default function RunningCard({ rawRunningData, currentDate }) {
 
     function checkForSecondRun(data) {
         if (data.distance2) {
-            return `<br />[ ${convertMetersToMiles(
-                data.distance2
-            )} miles ] <br />[ ${convertTime(data.time2)} ]`
+            return `
+            <br />[ Second Run ]
+            <br />[ ${convertMetersToMiles(
+        data.distance2
+    )} miles ] <br />[ ${convertTime(data.time2)} ]
+    <br />[ ${data.name2} ]
+    `
         } else {
             return ``
         }
