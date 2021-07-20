@@ -21,6 +21,7 @@ export default function ScheduleCard({
 
     const [currentLogs, setCurrentLog] = React.useState([])
     const [currentLogs2, setCurrentLog2] = React.useState([])
+    const [currentLogs3, setCurrentLog3] = React.useState([])
 
     // Card Date States
     const [currentYear, setCurrentYear] = React.useState(currentDate)

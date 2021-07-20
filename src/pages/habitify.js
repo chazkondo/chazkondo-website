@@ -38,6 +38,11 @@ export default function Habitify() {
             route: 'reviewCalendarUpTo1Week'
         },
         {
+            name: 'Set Weekly Goals',
+            loading: 0,
+            route: 'weeklyGoals'
+        },
+        {
             name: 'Weekly Review ',
             loading: 0,
             route: 'weeklyReview'
