@@ -75,9 +75,9 @@ export default function ScheduleCard({
         return months[month]
     }
 
-    function setColor(unit, val) {
+    function setColor(kind, val) {
         // Divided by 1,2,3 or hours
-        if (unit === 'min') {
+        if (kind === 'min') {
             // In Minutes
             if (val < 15) {
                 return 1
@@ -134,9 +134,11 @@ export default function ScheduleCard({
     React.useEffect(() => {
         if (logMap[habitName]) {
             setCurrentLog(logMap[habitName])
+            console.log('what kind of unit? ', logMap[habitName])
         }
         if (logMap[habit2Name]) {
             setCurrentLog2(logMap[habit2Name])
+            console.log('what kind of unit? ', logMap[habit2Name])
         }
     }, [logMap])
 
@@ -157,7 +159,6 @@ export default function ScheduleCard({
                 filteredData.push({
                     rawDate: log.created_date,
                     date: date,
-                    count: setColor(log.unit_type, log.value),
                     value: log.value,
                     unit_type: log.unit_type,
                     newId: Math.random()
@@ -168,6 +169,7 @@ export default function ScheduleCard({
                 hashmap[date] = { location: i }
             })
             setHabitData(filteredData)
+            console.log(filteredData, 'da crap coming out from her')
             setHashmap(hashmap)
             clearTimeout(timeout)
         }
@@ -194,10 +196,6 @@ export default function ScheduleCard({
                     let index = hashmap[date].location
                     filteredData[index].value2 = log.value
                     filteredData[index].unit_type2 = 'week'
-                    filteredData[index].count = setColor(
-                        log.unit_type2,
-                        log.value2
-                    )
                 } else {
                     filteredData.push({
                         rawDate: log.created_date,
