@@ -1,3 +1,7 @@
 .color-weekly-review {
     fill: pink;
 }
+
+.color-weekly-goals {
+    fill: rgb(230, 230, 0);
+}

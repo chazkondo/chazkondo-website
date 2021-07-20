@@ -10,6 +10,7 @@ import ReactTooltip from 'react-tooltip'
 export default function ScheduleCard({
     habitName,
     habit2Name,
+    habit3Name,
     currentDate,
     emoji,
     name,
@@ -18,6 +19,8 @@ export default function ScheduleCard({
 }) {
     const [habitData, setHabitData] = React.useState([])
     const [hashmap, setHashmap] = React.useState({})
+    const [habit2Flag, setHabit2Flag] = React.useState(false)
+    const [completionFlag, setCompletionFlag] = React.useState(false)
 
     const [currentLogs, setCurrentLog] = React.useState([])
     const [currentLogs2, setCurrentLog2] = React.useState([])
@@ -49,6 +52,9 @@ export default function ScheduleCard({
         }
         if (unit === 'weeklyReview') {
             return 'Weekly Review Completed'
+        }
+        if (unit === 'weeklyGoals') {
+            return 'Weekly Targets Set'
         }
         return 'Error: New Unit Type Detected.'
     }
@@ -112,11 +118,12 @@ export default function ScheduleCard({
     React.useEffect(() => {
         if (logMap[habitName]) {
             setCurrentLog(logMap[habitName])
-            // console.log('what kind of unit? ', logMap[habitName])
         }
         if (logMap[habit2Name]) {
             setCurrentLog2(logMap[habit2Name])
-            // console.log('what kind of unit? ', logMap[habit2Name])
+        }
+        if (logMap[habit3Name]) {
+            setCurrentLog3(logMap[habit3Name])
         }
     }, [logMap])
 
@@ -138,6 +145,7 @@ export default function ScheduleCard({
                     rawDate: log.created_date,
                     date: date,
                     value: log.value,
+                    count: log.value,
                     unit_type: 'calendarReview',
                     newId: Math.random()
                         .toString(36)
@@ -147,13 +155,12 @@ export default function ScheduleCard({
                 hashmap[date] = { location: i }
             })
             setHabitData(filteredData)
-            console.log(filteredData, 'da crap coming out from her')
             setHashmap(hashmap)
             clearTimeout(timeout)
         }
 
         return () => clearTimeout(timeout)
-    }, [currentLogs, currentLogs2])
+    }, [currentLogs, currentLogs2, currentLogs3])
 
     React.useEffect(() => {
         ReactTooltip.rebuild()
@@ -176,9 +183,32 @@ export default function ScheduleCard({
                     filteredData[index].unit_type2 = 'weeklyReview'
                 }
             })
+            setHabit2Flag(true)
             setHabitData(filteredData)
         }
     }, [hashmap])
+
+    React.useEffect(() => {
+        if (habitData.length && habit2Flag) {
+            let filteredData = [...habitData]
+            currentLogs3.forEach((log) => {
+                const localDate = new Date(log.created_date)
+                const yearData = parseFloat(localDate.toString().slice(11, 16))
+                if (yearData < minimumYear) {
+                    setMinimumYear(yearData)
+                }
+
+                let date = formatDate(localDate).replaceAll('/', '-')
+                if (hashmap[date]) {
+                    let index = hashmap[date].location
+                    filteredData[index].value3 = log.value
+                    filteredData[index].unit_type3 = 'weeklyGoals'
+                }
+            })
+            setCompletionFlag(true)
+            setHabitData(filteredData)
+        }
+    }, [habit2Flag])
 
     return (
         <>
@@ -194,10 +224,7 @@ export default function ScheduleCard({
                             // backgroundColor: `pink`,
                         }}
                     >
-                        <h3
-                            onClick={() => console.log(habitData, '?')}
-                            style={{ paddingTop: 0, margin: 0 }}
-                        >
+                        <h3 style={{ paddingTop: 0, margin: 0 }}>
                             {emoji ? emoji : null} {name}
                         </h3>
                         <p
@@ -210,7 +237,7 @@ export default function ScheduleCard({
                             {currentYearPage ? ` ${currentYearPage}` : ''}
                         </p>
                         <div>
-                            {habitData.length ? (
+                            {completionFlag ? (
                                 <CalendarHeatmap
                                     startDate={
                                         new Date(`${currentYearPage - 1}-12-31`)
@@ -223,10 +250,22 @@ export default function ScheduleCard({
                                         if (!value) {
                                             return 'color-empty'
                                         } else {
-                                            if (value.unit_type2 === 'week') {
+                                            if (
+                                                value.unit_type3 ===
+                                                'weeklyGoals'
+                                            ) {
+                                                return `color-weekly-goals`
+                                            }
+                                            if (
+                                                value.unit_type2 ===
+                                                'weeklyReview'
+                                            ) {
                                                 return `color-weekly-review`
                                             }
-                                            if (value.unit_type === 'rep') {
+                                            if (
+                                                value.unit_type ===
+                                                'calendarReview'
+                                            ) {
                                                 return `color-gitlab-2`
                                             }
                                         }
@@ -245,6 +284,13 @@ export default function ScheduleCard({
                                 value.value2
                                     ? `<br />[ ${convertValue(
                                         value.unit_type2
+                                    )} ]`
+                                    : ``
+                                }
+                                ${
+                                value.value3
+                                    ? `<br />[ ${convertValue(
+                                        value.unit_type3
                                     )} ]`
                                     : ``
                                 }
@@ -322,7 +368,7 @@ export default function ScheduleCard({
                         >
                             {caption}
                         </p>
-                        {habitData.length ? (
+                        {completionFlag ? (
                             <CalendarHeatmap
                                 startDate={new Date(getMobileDates('start'))}
                                 endDate={new Date(getMobileDates('end'))}
@@ -331,6 +377,11 @@ export default function ScheduleCard({
                                     if (!value) {
                                         return 'color-empty'
                                     } else {
+                                        if (
+                                            value.unit_type3 === 'weeklyGoals'
+                                        ) {
+                                            return `color-weekly-goals`
+                                        }
                                         if (
                                             value.unit_type2 === 'weeklyReview'
                                         ) {

@@ -359,10 +359,11 @@ export default function Habitify() {
                             <ScheduleCard
                                 habitName={'Review Calendar Up To 1 Week'}
                                 habit2Name={'Weekly Review '}
+                                habit3Name={'Set Weekly Goals'}
                                 logMap={logMap}
                                 currentDate={currentDate}
                                 emoji="📅"
-                                name={'Schedule & Weekly Review'}
+                                name={'Schedule & Weekly Review + Target Setting'}
                                 caption={
                                     <>
                                         <a
