@@ -43,14 +43,11 @@ export default function ScheduleCard({
         }
     }
 
-    function convertValue(unit, val) {
-        if (unit === 'sec') {
-            return val / 60 + ' Minutes'
+    function convertValue(unit) {
+        if (unit === 'calendarReview') {
+            return 'Calendar Review Completed'
         }
-        if (unit === 'rep') {
-            return 'Completed'
-        }
-        if (unit === 'week') {
+        if (unit === 'weeklyReview') {
             return 'Weekly Review Completed'
         }
         return 'Error: New Unit Type Detected.'
@@ -73,25 +70,6 @@ export default function ScheduleCard({
         }
 
         return months[month]
-    }
-
-    function setColor(kind, val) {
-        // Divided by 1,2,3 or hours
-        if (kind === 'min') {
-            // In Minutes
-            if (val < 15) {
-                return 1
-            }
-            if (val >= 15 && val < 30) {
-                return 2
-            }
-            if (val >= 30 && val < 45) {
-                return 3
-            }
-            if (val >= 45) {
-                return 4
-            }
-        }
     }
 
     function formatDate(date) {
@@ -134,11 +112,11 @@ export default function ScheduleCard({
     React.useEffect(() => {
         if (logMap[habitName]) {
             setCurrentLog(logMap[habitName])
-            console.log('what kind of unit? ', logMap[habitName])
+            // console.log('what kind of unit? ', logMap[habitName])
         }
         if (logMap[habit2Name]) {
             setCurrentLog2(logMap[habit2Name])
-            console.log('what kind of unit? ', logMap[habit2Name])
+            // console.log('what kind of unit? ', logMap[habit2Name])
         }
     }, [logMap])
 
@@ -160,7 +138,7 @@ export default function ScheduleCard({
                     rawDate: log.created_date,
                     date: date,
                     value: log.value,
-                    unit_type: log.unit_type,
+                    unit_type: 'calendarReview',
                     newId: Math.random()
                         .toString(36)
                         .replace(/[^a-z]+/g, '')
@@ -195,19 +173,7 @@ export default function ScheduleCard({
                 if (hashmap[date]) {
                     let index = hashmap[date].location
                     filteredData[index].value2 = log.value
-                    filteredData[index].unit_type2 = 'week'
-                } else {
-                    filteredData.push({
-                        rawDate: log.created_date,
-                        date: date,
-                        count: setColor(log.unit_type, log.value),
-                        value: log.value,
-                        unit_type: 'week',
-                        newId: Math.random()
-                            .toString(36)
-                            .replace(/[^a-z]+/g, '')
-                            .substr(0, 3),
-                    })
+                    filteredData[index].unit_type2 = 'weeklyReview'
                 }
             })
             setHabitData(filteredData)
@@ -273,14 +239,12 @@ export default function ScheduleCard({
                                                 'data-tip': `${
                                                     value.date
                                                 }:  <br />[ ${convertValue(
-                                                    value.unit_type,
-                                                    value.value
+                                                    value.unit_type
                                                 )} ]
                                                 ${
                                 value.value2
                                     ? `<br />[ ${convertValue(
-                                        value.unit_type2,
-                                        value.value2
+                                        value.unit_type2
                                     )} ]`
                                     : ``
                                 }
@@ -367,10 +331,14 @@ export default function ScheduleCard({
                                     if (!value) {
                                         return 'color-empty'
                                     } else {
-                                        if (value.unit_type2 === 'week') {
+                                        if (
+                                            value.unit_type2 === 'weeklyReview'
+                                        ) {
                                             return `color-weekly-review`
                                         }
-                                        if (value.unit_type === 'rep') {
+                                        if (
+                                            value.unit_type === 'calendarReview'
+                                        ) {
                                             return `color-gitlab-2`
                                         }
                                     }
