@@ -10,7 +10,6 @@ import Skills from './Skills.jsx'
 
 function Main({ size, backgroundDark, animation, videoDisplay }) {
     const { scrollYProgress } = useViewportScroll()
-
     return (
         <div className="MainContent">
             <BackgroundVideo
@@ -28,13 +27,13 @@ function Main({ size, backgroundDark, animation, videoDisplay }) {
                 backgroundDark={backgroundDark}
                 scrollYProgress={scrollYProgress}
             />
-            {animation && (
+            {animation ? (
                 <ParticlesSection
                     motion={motion}
                     useTransform={useTransform}
                     scrollYProgress={scrollYProgress}
                 />
-            )}
+            ) : null}
             <div
                 style={{
                     height: `450vh`,

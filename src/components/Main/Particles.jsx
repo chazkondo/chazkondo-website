@@ -1,5 +1,5 @@
-import React from "react"
-import { Particles } from "react-particles-js"
+import React from 'react'
+import { Particles } from 'react-particles-js'
 
 export default function ParticlesSection({
     motion,
@@ -19,7 +19,7 @@ export default function ParticlesSection({
                 y: translateY,
             }}
         >
-            {console.log(`This div is being rerendered`)}
+            {/* {console.log(`This div is being rerendered`)} */}
             <Particles
                 style={{ position: `absolute` }}
                 params={{
