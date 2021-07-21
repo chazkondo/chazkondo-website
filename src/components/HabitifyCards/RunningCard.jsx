@@ -7,7 +7,7 @@ import 'react-calendar-heatmap/dist/styles.css'
 
 import ReactTooltip from 'react-tooltip'
 
-export default function RunningCard({ rawRunningData, currentDate }) {
+export default function RunningCard({ rawRunningData, currentDate, caption }) {
     // Running Data
     const [runningData, setRunningData] = React.useState([])
 
@@ -268,6 +268,7 @@ export default function RunningCard({ rawRunningData, currentDate }) {
                             }}
                         >
                             An updated tracker of my running activities
+                            {caption}
                             {currentYearPage ? ` for ${currentYearPage}` : ''}
                         </p>
                         {runningData.length ? (
