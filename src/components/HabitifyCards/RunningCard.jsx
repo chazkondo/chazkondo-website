@@ -171,6 +171,7 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
                             }}
                         >
                             An updated tracker of my running activities
+                            {caption}
                             {currentYearPage ? ` for ${currentYearPage}` : ''}
                         </p>
                         <div>
