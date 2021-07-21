@@ -5,6 +5,7 @@ import { Card, Row } from 'reactstrap'
 import CalendarHeatmap from 'react-calendar-heatmap'
 import 'react-calendar-heatmap/dist/styles.css'
 import ReactTooltip from 'react-tooltip'
+import '../../assets/css/habitify-card.css'
 
 export default function HabitifyCard({
     habitName,
