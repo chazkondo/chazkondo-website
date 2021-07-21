@@ -16,6 +16,9 @@ import ScheduleCard from '../components/HabitifyCards/ScheduleCard'
 
 import axios from 'axios'
 
+// CSS
+import '../assets/css/habitify-card.css'
+
 var Spinner = require('react-spinkit')
 
 export default function Habitify() {
