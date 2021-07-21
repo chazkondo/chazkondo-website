@@ -170,8 +170,8 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
                                 paddingBottom: `20px`,
                             }}
                         >
-                            An updated tracker of my running activities
-                            {caption}
+                            {caption} An updated tracker of my running
+                            activities
                             {currentYearPage ? ` for ${currentYearPage}` : ''}
                         </p>
                         <div>
@@ -268,8 +268,8 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
                                 paddingBottom: `20px`,
                             }}
                         >
-                            An updated tracker of my running activities
-                            {caption}
+                            {caption} An updated tracker of my running
+                            activities
                             {currentYearPage ? ` for ${currentYearPage}` : ''}
                         </p>
                         {runningData.length ? (
