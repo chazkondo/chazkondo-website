@@ -427,7 +427,7 @@ export default function Habitify() {
                                 currentDate={currentDate}
                                 emoji="🙅🏻"
                                 name="Intermittent Fasting"
-                                caption="[18 Hours]"
+                                caption="[20 Hours]"
                             />
                             <HabitifyCard
                                 habitName={'Nutriblast'}
