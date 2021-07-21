@@ -95,7 +95,7 @@ export default function Habitify() {
 
     React.useEffect(()=>{
         let mounted = true;
-        if (mounted && loadingArr.length === 11 && loadingAllHabits === 'loading') {
+        if (mounted && loadingArr.length === 12 && loadingAllHabits === 'loading') {
             setText(' * All Habits Loaded * 🥳')
             setTimeout(() => setLoadingAllHabits('completed'), 2000)
         }
