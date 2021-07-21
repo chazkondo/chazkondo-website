@@ -370,6 +370,7 @@ export default function Habitify() {
                                 caption={
                                     <>
                                         <a
+                                            className="basic-link"
                                             href="https://gettingthingsdone.com/"
                                             alt="Getting Things Done by David Allen"
                                         >
@@ -395,6 +396,7 @@ export default function Habitify() {
                                 name="Empty Capture Locations"
                                 caption={
                                     <a
+                                    className="basic-link"
                                         href="https://gettingthingsdone.com/"
                                         alt="Getting Things Done by David Allen"
                                     >
@@ -414,6 +416,7 @@ export default function Habitify() {
                                 }
                                 caption={
                                     <a
+                                        className="basic-link"
                                         href="https://store.tonyrobbins.com/products/the-time-of-your-life"
                                         alt="Tony Robbins RPM Planning Method"
                                     >
