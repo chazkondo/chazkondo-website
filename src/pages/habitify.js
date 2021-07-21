@@ -440,6 +440,15 @@ export default function Habitify() {
                             <RunningCard
                                 rawRunningData={rawRunningData}
                                 currentDate={currentDate}
+                                caption={
+                                    <a
+                                        className="basic-link"
+                                        href="https://strava.com/"
+                                        alt="Strava"
+                                    >
+                                        [Strava]
+                                    </a>
+                                }
                             />
                             <HabitifyCard
                                 habitName={'Meditation/Hypnosis'}
@@ -466,6 +475,7 @@ export default function Habitify() {
                                 name="Lumosity"
                                 caption={
                                     <a
+                                        className="basic-link"
                                         href="https://lumosity.com/"
                                         alt="Lumosity"
                                     >
