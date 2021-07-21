@@ -479,6 +479,7 @@ export default function Habitify() {
                                 name="Organizing / Cleaning"
                                 caption={
                                     <a
+                                        className="basic-link"
                                         href="https://konmari.com/"
                                         alt="Marie Kondo"
                                     >
