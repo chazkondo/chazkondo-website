@@ -353,7 +353,7 @@ function IndexNavbar(props) {
                                         >
                                             <NavLink
                                                 data-placement="bottom"
-                                                href="https://www.facebook.com/"
+                                                href="https://www.facebook.com/demifire1337/"
                                                 target="_blank"
                                                 title="Like me on Facebook"
                                             >
