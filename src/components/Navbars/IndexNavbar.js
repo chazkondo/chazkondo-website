@@ -291,6 +291,7 @@ function IndexNavbar(props) {
                                             <NavLink
                                                 style={{ cursor: `pointer` }}
                                                 target="_blank"
+                                                href="https://www.instagram.com/chazkondo"
                                                 onClick={() => {
                                                     changeTier(0)
                                                 }}
