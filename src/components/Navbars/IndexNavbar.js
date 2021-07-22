@@ -352,6 +352,7 @@ function IndexNavbar(props) {
                                             }
                                         >
                                             <NavLink
+                                                className="tooltip"
                                                 data-placement="bottom"
                                                 href="https://www.facebook.com/demifire1337/"
                                                 target="_blank"
