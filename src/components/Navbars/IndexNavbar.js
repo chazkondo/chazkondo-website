@@ -398,6 +398,7 @@ function IndexNavbar(props) {
                                             }
                                         >
                                             <NavLink
+                                                className="tooltip"
                                                 data-placement="bottom"
                                                 href="https://www.youtube.com/"
                                                 target="_blank"
