@@ -400,7 +400,7 @@ function IndexNavbar(props) {
                                             <NavLink
                                                 className="tooltip"
                                                 data-placement="bottom"
-                                                href="https://www.youtube.com/"
+                                                href="https://www.github.com/chazkondo"
                                                 target="_blank"
                                                 title="Github Profile"
                                             >
