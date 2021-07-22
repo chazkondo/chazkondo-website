@@ -375,6 +375,7 @@ function IndexNavbar(props) {
                                             }
                                         >
                                             <NavLink
+                                                className="tooltip"
                                                 data-placement="bottom"
                                                 href="https://www.linkedin.com/in/chazkondo"
                                                 target="_blank"
