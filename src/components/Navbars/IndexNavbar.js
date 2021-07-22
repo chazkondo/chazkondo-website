@@ -378,7 +378,7 @@ function IndexNavbar(props) {
                                                 data-placement="bottom"
                                                 href="https://www.linkedin.com/in/chazkondo"
                                                 target="_blank"
-                                                title="Follow us on Instagram"
+                                                title="Follow me on Instagram"
                                             >
                                                 <FontAwesomeIcon
                                                     size={`lg`}
