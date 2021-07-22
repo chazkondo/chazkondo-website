@@ -295,7 +295,7 @@ function IndexNavbar(props) {
                                                     changeTier(0)
                                                 }}
                                                 data-placement="bottom"
-                                                title="Follow us on Instagram"
+                                                title="Follow me on Instagram"
                                             >
                                                 Back
                                                 <hr />
