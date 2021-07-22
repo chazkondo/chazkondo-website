@@ -365,6 +365,9 @@ function IndexNavbar(props) {
                                                     {` `}
                                                     Facebook
                                                 </p>
+                                                <span className="tooltiptext">
+                                                    Facebook
+                                                </span>
                                             </NavLink>
                                         </NavItem>
                                         <NavItem
