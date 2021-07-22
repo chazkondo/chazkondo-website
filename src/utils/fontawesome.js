@@ -1,4 +1,4 @@
-import { library } from "@fortawesome/fontawesome-svg-core"
+import { library } from '@fortawesome/fontawesome-svg-core'
 import {
     faTwitter,
     faFacebook,
@@ -14,8 +14,9 @@ import {
     faSass,
     faSwift,
     faLinkedinIn,
-} from "@fortawesome/free-brands-svg-icons"
-import { faLightbulb as farLightbulb } from "@fortawesome/free-regular-svg-icons"
+    faGithub,
+} from '@fortawesome/free-brands-svg-icons'
+import { faLightbulb as farLightbulb } from '@fortawesome/free-regular-svg-icons'
 import {
     faMoon,
     faSun,
@@ -24,7 +25,7 @@ import {
     faVideoSlash,
     faToggleOff,
     faToggleOn,
-} from "@fortawesome/free-solid-svg-icons"
+} from '@fortawesome/free-solid-svg-icons'
 library.add(
     faTwitter,
     faFacebook,
@@ -47,5 +48,6 @@ library.add(
     faVideoSlash,
     faToggleOff,
     faToggleOn,
-    faLinkedinIn
+    faLinkedinIn,
+    faGithub
 )
