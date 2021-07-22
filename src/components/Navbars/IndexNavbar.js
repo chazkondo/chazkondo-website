@@ -376,7 +376,7 @@ function IndexNavbar(props) {
                                         >
                                             <NavLink
                                                 data-placement="bottom"
-                                                href="https://www.instagram.com/"
+                                                href="https://www.linkedin.com/in/chazkondo"
                                                 target="_blank"
                                                 title="Follow us on Instagram"
                                             >
