@@ -408,11 +408,11 @@ function IndexNavbar(props) {
                                                         marginTop: `1px`,
                                                     }}
                                                     size={`lg`}
-                                                    icon={[`fab`, `youtube`]}
+                                                    icon={[`fab`, `github`]}
                                                 />
                                                 <p className="d-lg-none">
                                                     {` `}
-                                                    Youtube
+                                                    Github
                                                 </p>
                                             </NavLink>
                                         </NavItem>
