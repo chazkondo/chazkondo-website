@@ -355,7 +355,7 @@ function IndexNavbar(props) {
                                                 data-placement="bottom"
                                                 href="https://www.facebook.com/"
                                                 target="_blank"
-                                                title="Like us on Facebook"
+                                                title="Like me on Facebook"
                                             >
                                                 <FontAwesomeIcon
                                                     size={`lg`}
