@@ -415,6 +415,9 @@ function IndexNavbar(props) {
                                                     {` `}
                                                     Github
                                                 </p>
+                                                <span className="tooltiptext">
+                                                    Github
+                                                </span>
                                             </NavLink>
                                         </NavItem>
                                         <NavItem
