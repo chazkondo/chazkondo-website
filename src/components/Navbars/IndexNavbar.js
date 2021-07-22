@@ -401,7 +401,7 @@ function IndexNavbar(props) {
                                                 data-placement="bottom"
                                                 href="https://www.youtube.com/"
                                                 target="_blank"
-                                                title="Youtube"
+                                                title="Github Profile"
                                             >
                                                 <FontAwesomeIcon
                                                     style={{
