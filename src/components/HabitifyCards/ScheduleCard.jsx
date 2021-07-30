@@ -272,15 +272,6 @@ export default function ScheduleCard({
                                         return `color-github-${value.count}`
                                     }}
                                     data-for={habitData[0].habit_Id}
-                                    weekdayLabels={[
-                                        'Sun',
-                                        'Mon',
-                                        'Tue',
-                                        'Wed',
-                                        'Thu',
-                                        'Fri',
-                                        'Sat',
-                                    ]}
                                     tooltipDataAttrs={(value) => {
                                         if (value.date) {
                                             return {
@@ -406,13 +397,13 @@ export default function ScheduleCard({
                                 }}
                                 showWeekdayLabels={true}
                                 weekdayLabels={[
-                                    'Sun',
                                     'Mon',
                                     'Tue',
                                     'Wed',
                                     'Thu',
                                     'Fri',
                                     'Sat',
+                                    'Sun',
                                 ]}
                                 data-for={
                                     habitData[0].habit_Id +
