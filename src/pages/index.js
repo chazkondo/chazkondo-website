@@ -71,6 +71,14 @@ function Index() {
                     property="og:description"
                     content="Full Stack Software Engineer/Cloud Developer"
                 />
+                <meta
+                    property="image"
+                    content="https://chazkondo.com/myfavicon.png"
+                />
+                <meta
+                    property="description"
+                    content="Full Stack Software Engineer"
+                />
                 <meta property="og:site_name" content="Chaz Kondo" />
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:title" content={title} />
