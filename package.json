@@ -78,6 +78,7 @@
         "gatsby-transformer-sharp": "2.5.14",
         "lodash": "4.17.20",
         "node-sass": "4.14.0",
+        "p5": "^1.4.0",
         "react": "16.13.1",
         "react-calendar-heatmap": "^1.8.1",
         "react-dom": "^16.13.1",
@@ -90,6 +91,8 @@
         "react-spinkit": "^3.0.0",
         "react-tooltip": "^4.2.11",
         "reactstrap": "^8.5.1",
-        "styled-components": "^5.2.0"
+        "styled-components": "^5.2.0",
+        "three": "0.121.0",
+        "vanta": "^0.5.21"
     }
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import mypic from '../../images/mypic.jpeg'
 import { Card, Row } from 'reactstrap'
@@ -7,18 +7,53 @@ import ParticlesSectionWhite from './ParticlesWhite.jsx'
 import ParticlesSectionBlack from './ParticlesBlack.jsx'
 import { motion, useViewportScroll, useTransform } from 'framer-motion'
 
+import BIRDS from 'vanta/dist/vanta.birds.min'
+import * as THREE from 'three'
+
 function Responsive({ size, backgroundDark, animation, videoDisplay }) {
     const { scrollYProgress } = useViewportScroll()
+
+    const [vantaEffect, setVantaEffect] = useState(0)
+    const vantaRef = useRef(null)
+
+    useEffect(() => {
+        if (!vantaEffect) {
+            setVantaEffect(
+                BIRDS({
+                    el: vantaRef.current,
+                    THREE: THREE,
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 600.0,
+                    minWidth: 600.0,
+                    scale: 1.0,
+                    scaleMobile: 0.7,
+                    backgroundAlpha: 0,
+                    quantity: 3,
+                    color1: '#373737',
+                    color2: '#0xd1ff',
+                })
+            )
+        }
+        return () => {
+            if (vantaEffect) {
+                vantaEffect.destroy()
+            }
+        }
+    }, [vantaEffect])
+
     return (
         <>
-            {animation ? (
+            {/* {animation ? (
                 backgroundDark ? (
                     <ParticlesSectionWhite />
                 ) : (
                     <ParticlesSectionBlack />
                 )
-            ) : null}
+            ) : null} */}
             <div
+                ref={vantaRef}
                 style={{
                     height: '100vh',
                     background: backgroundDark
@@ -26,7 +61,7 @@ function Responsive({ size, backgroundDark, animation, videoDisplay }) {
                         : 'white',
                 }}
             >
-                <Row className="ResponsiveContent">
+                <Row id="your-element-selector" className="ResponsiveContent">
                     <Card
                         body
                         className="ResponsiveContentParent"
