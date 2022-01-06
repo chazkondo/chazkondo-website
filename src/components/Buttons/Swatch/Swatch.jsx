@@ -89,6 +89,7 @@ export default function Swatch({
                     style={{
                         opacity: loading,
                         transition: `opacity 1s linear`,
+                        zIndex: 2,
                     }}
                     className={classnames(`navigationSwatch`, {
                         active: swatchState,

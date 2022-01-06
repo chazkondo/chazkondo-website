@@ -17,7 +17,7 @@ function Responsive({ size, backgroundDark, animation, videoDisplay }) {
     const vantaRef = useRef(null)
 
     useEffect(() => {
-        if (!vantaEffect) {
+        if (!vantaEffect && animation) {
             setVantaEffect(
                 BIRDS({
                     el: vantaRef.current,
@@ -36,22 +36,25 @@ function Responsive({ size, backgroundDark, animation, videoDisplay }) {
                 })
             )
         }
+
+        if (vantaEffect && !animation) {
+            setVantaEffect(0)
+        }
+
         return () => {
             if (vantaEffect) {
                 vantaEffect.destroy()
             }
         }
-    }, [vantaEffect])
+    }, [vantaEffect, animation])
 
     return (
         <>
-            {/* {animation ? (
-                backgroundDark ? (
-                    <ParticlesSectionWhite />
-                ) : (
-                    <ParticlesSectionBlack />
-                )
-            ) : null} */}
+            {backgroundDark ? (
+                <ParticlesSectionWhite videoDisplay={videoDisplay} />
+            ) : (
+                <ParticlesSectionBlack videoDisplay={videoDisplay} />
+            )}
             <div
                 ref={vantaRef}
                 style={{
