@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 // nodejs library that concatenates strings
-import classnames from 'classnames'
+import classnames from "classnames";
 // reactstrap components
 import {
     Collapse,
@@ -14,40 +14,40 @@ import {
     NavLink,
     Nav,
     Container,
-} from 'reactstrap'
+} from "reactstrap";
 
-import HabitifyIcon from '../../assets/img/habitify.jsx'
+import HabitifyIcon from "../../assets/img/habitify.jsx";
 
-import { StaticQuery, graphql } from 'gatsby'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import '../../utils/fontawesome'
+import { StaticQuery, graphql } from "gatsby";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../../utils/fontawesome";
 
-const stopPropagation = event => event.stopPropagation()
+const stopPropagation = (event) => event.stopPropagation();
 
 function IndexNavbar(props) {
     const [state, dispatch] = React.useReducer(reducer, {
         navbarColor: `navbar-transparent`,
-    })
-    const [loading, setLoading] = React.useState(0)
-    const [divLoading, setDivLoading] = React.useState(false)
-    const [tier, changeTier] = React.useState(0)
+    });
+    const [loading, setLoading] = React.useState(0);
+    const [divLoading, setDivLoading] = React.useState(false);
+    const [tier, changeTier] = React.useState(0);
 
     function reducer(state, action) {
         switch (action.type) {
-        case `isBeforeMarker`:
-            return { navbarColor: `navbar-transparent` }
-        case `isPastMarker`:
-            return { navbarColor: `` }
-        default:
-            throw new Error()
+            case `isBeforeMarker`:
+                return { navbarColor: `navbar-transparent` };
+            case `isPastMarker`:
+                return { navbarColor: `` };
+            default:
+                throw new Error();
         }
     }
 
-    const [navbarCollapse, setNavbarCollapse] = React.useState(false)
-    const [smDropdownOpen, setSmDropdownOpen] = React.useState(false)
-    const [dropdownOpen, setDropdownOpen] = React.useState(false)
-    const wrapperRef = React.useRef(null)
-    const [readingProgress, setReadingProgress] = React.useState(0)
+    const [navbarCollapse, setNavbarCollapse] = React.useState(false);
+    const [smDropdownOpen, setSmDropdownOpen] = React.useState(false);
+    const [dropdownOpen, setDropdownOpen] = React.useState(false);
+    const wrapperRef = React.useRef(null);
+    const [readingProgress, setReadingProgress] = React.useState(0);
 
     const scrollListener = () => {
         const totalHeight =
@@ -55,106 +55,106 @@ function IndexNavbar(props) {
             document.documentElement.clientHeight -
             0.04 *
                 (document.documentElement.scrollHeight -
-                    document.documentElement.clientHeight)
+                    document.documentElement.clientHeight);
         const windowScrollTop =
             window.pageYOffset ||
             document.documentElement.scrollTop ||
             document.body.scrollTop ||
-            0
+            0;
 
         if (windowScrollTop === 0) {
-            return setReadingProgress(0)
+            return setReadingProgress(0);
         }
 
         if (windowScrollTop > totalHeight) {
-            return setReadingProgress(100)
+            return setReadingProgress(100);
         }
 
-        setReadingProgress((windowScrollTop / totalHeight) * 100)
-    }
+        setReadingProgress((windowScrollTop / totalHeight) * 100);
+    };
 
     const toggleNavbarCollapse = () => {
-        setNavbarCollapse(navbarCollapse => !navbarCollapse)
-        document.documentElement.classList.toggle(`nav-open`)
-        setTimeout(() => changeTier(0), 200)
-    }
+        setNavbarCollapse((navbarCollapse) => !navbarCollapse);
+        document.documentElement.classList.toggle(`nav-open`);
+        setTimeout(() => changeTier(0), 200);
+    };
 
-    const toggle = () => setDropdownOpen(!dropdownOpen)
-    const toggleSm = () => setSmDropdownOpen(!smDropdownOpen)
+    const toggle = () => setDropdownOpen(!dropdownOpen);
+    const toggleSm = () => setSmDropdownOpen(!smDropdownOpen);
 
     const handleClickOutside = (event) => {
         if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-            setNavbarCollapse(false)
-            document.documentElement.classList.remove(`nav-open`)
-            setTimeout(() => changeTier(0), 200)
+            setNavbarCollapse(false);
+            document.documentElement.classList.remove(`nav-open`);
+            setTimeout(() => changeTier(0), 200);
         }
-    }
+    };
 
     React.useEffect(() => {
-        let updateNavbarColor
+        let updateNavbarColor;
         if (props.changeScrollTop) {
             updateNavbarColor = () => {
                 if (
                     document.documentElement.scrollTop > 99 ||
                     document.body.scrollTop > 99
                 ) {
-                    dispatch({ type: `isPastMarker` })
+                    dispatch({ type: `isPastMarker` });
                 } else if (
                     document.documentElement.scrollTop < 100 ||
                     document.body.scrollTop < 100
                 ) {
-                    dispatch({ type: `isBeforeMarker` })
+                    dispatch({ type: `isBeforeMarker` });
                 }
-            }
+            };
         } else {
             updateNavbarColor = () => {
                 if (
                     document.documentElement.scrollTop > 549 ||
                     document.body.scrollTop > 549
                 ) {
-                    dispatch({ type: `isPastMarker` })
+                    dispatch({ type: `isPastMarker` });
                 } else if (
                     document.documentElement.scrollTop < 550 ||
                     document.body.scrollTop < 550
                 ) {
-                    dispatch({ type: `isBeforeMarker` })
+                    dispatch({ type: `isBeforeMarker` });
                 }
-            }
+            };
         }
 
-        window.addEventListener(`scroll`, updateNavbarColor)
+        window.addEventListener(`scroll`, updateNavbarColor);
 
         return function cleanup() {
-            window.removeEventListener(`scroll`, updateNavbarColor)
-        }
-    })
+            window.removeEventListener(`scroll`, updateNavbarColor);
+        };
+    });
 
     React.useEffect(() => {
-        document.addEventListener(`click`, handleClickOutside, false)
+        document.addEventListener(`click`, handleClickOutside, false);
         return () => {
-            document.removeEventListener(`click`, handleClickOutside, false)
-        }
-    }, [])
+            document.removeEventListener(`click`, handleClickOutside, false);
+        };
+    }, []);
 
     React.useEffect(() => {
-        window.addEventListener(`scroll`, scrollListener)
-        return () => window.removeEventListener(`scroll`, scrollListener)
-    })
+        window.addEventListener(`scroll`, scrollListener);
+        return () => window.removeEventListener(`scroll`, scrollListener);
+    });
 
     React.useEffect(() => {
-        let load
+        let load;
         function startTransition() {
-            setDivLoading(true)
-            load = setTimeout(() => setLoading(1), 1)
+            setDivLoading(true);
+            load = setTimeout(() => setLoading(1), 1);
         }
 
-        const divload = setTimeout(() => startTransition(), 500)
+        const divload = setTimeout(() => startTransition(), 500);
 
         return () => {
-            clearTimeout(load)
-            clearTimeout(divload)
-        }
-    }, [loading, divLoading])
+            clearTimeout(load);
+            clearTimeout(divload);
+        };
+    }, [loading, divLoading]);
 
     return (
         <StaticQuery
@@ -169,7 +169,7 @@ function IndexNavbar(props) {
                     }
                 }
             `}
-            render={data => (
+            render={(data) => (
                 <div ref={wrapperRef}>
                     {divLoading && (
                         <Navbar
@@ -180,24 +180,24 @@ function IndexNavbar(props) {
                                 props.isSticky
                                     ? props.backgroundDark
                                         ? classnames(
-                                            state.navbarColor,
-                                            `darkmode`
-                                        )
+                                              state.navbarColor,
+                                              `darkmode`
+                                          )
                                         : classnames(
-                                            state.navbarColor,
-                                            `lightmode`
-                                        )
+                                              state.navbarColor,
+                                              `lightmode`
+                                          )
                                     : props.backgroundDark
-                                        ? classnames(
-                                            `fixed-top`,
-                                            state.navbarColor,
-                                            `darkmode`
-                                        )
-                                        : classnames(
-                                            `fixed-top`,
-                                            state.navbarColor,
-                                            `lightmode`
-                                        )
+                                    ? classnames(
+                                          `fixed-top`,
+                                          state.navbarColor,
+                                          `darkmode`
+                                      )
+                                    : classnames(
+                                          `fixed-top`,
+                                          state.navbarColor,
+                                          `lightmode`
+                                      )
                             }
                             expand="lg"
                         >
@@ -291,12 +291,10 @@ function IndexNavbar(props) {
                                             <NavLink
                                                 style={{ cursor: `pointer` }}
                                                 target="_blank"
-                                                href="https://www.instagram.com/chazkondo"
                                                 onClick={() => {
-                                                    changeTier(0)
+                                                    changeTier(0);
                                                 }}
                                                 data-placement="bottom"
-                                                title="Follow me on Instagram"
                                             >
                                                 Back
                                                 <hr />
@@ -381,7 +379,7 @@ function IndexNavbar(props) {
                                             <NavLink
                                                 className="tooltip"
                                                 data-placement="bottom"
-                                                href="https://www.linkedin.com/in/chazkondo"
+                                                href="https://www.instagram.com/chazkondo/"
                                                 target="_blank"
                                                 title="Follow me on Instagram"
                                             >
@@ -500,7 +498,7 @@ function IndexNavbar(props) {
                                                                         {` #${tag.name}`}
                                                                     </NavLink>
                                                                 </NavItem>
-                                                            )
+                                                            );
                                                         }
                                                     }
                                                 )}
@@ -517,7 +515,7 @@ function IndexNavbar(props) {
                                                         className="d-lg-none"
                                                         data-placement="bottom"
                                                         href="/"
-                                                        title="Follow us on Instagram"
+                                                        title="Home"
                                                     >
                                                         Home
                                                     </NavLink>
@@ -571,7 +569,7 @@ function IndexNavbar(props) {
                                                                         >
                                                                             {`#${tag.name}`}
                                                                         </DropdownItem>
-                                                                    )
+                                                                    );
                                                                 }
                                                             }
                                                         )}
@@ -589,7 +587,8 @@ function IndexNavbar(props) {
                                             }}
                                         >
                                             <NavLink
-                                                onClick={() => toggleNavbarCollapse()
+                                                onClick={() =>
+                                                    toggleNavbarCollapse()
                                                 }
                                                 data-placement="bottom"
                                                 href="/habitify"
@@ -610,7 +609,7 @@ function IndexNavbar(props) {
                                             <NavLink
                                                 style={{ cursor: `pointer` }}
                                                 onClick={() => {
-                                                    changeTier(1)
+                                                    changeTier(1);
                                                 }}
                                                 data-placement="bottom"
                                                 title="Follow us on Social Media"
@@ -630,7 +629,7 @@ function IndexNavbar(props) {
                                             <NavLink
                                                 style={{ cursor: `pointer` }}
                                                 onClick={() => {
-                                                    changeTier(2)
+                                                    changeTier(2);
                                                 }}
                                                 data-placement="bottom"
                                                 title="Visit our Blog"
@@ -663,7 +662,7 @@ function IndexNavbar(props) {
                 </div>
             )}
         />
-    )
+    );
 }
 
-export default IndexNavbar
+export default IndexNavbar;
