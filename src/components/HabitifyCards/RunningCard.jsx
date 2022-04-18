@@ -154,6 +154,7 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
             })
             setRunningData(filteredData)
         }
+        console.log(runningData, 'what is the unique datta?')
     }, [rawRunningData])
 
     React.useEffect(() => {
@@ -195,6 +196,15 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
                                         new Date(`${currentYearPage}-12-31`)
                                     }
                                     values={runningData}
+                                    data-for={
+                                        `${runningData[0].run_id}` +
+                                        +Math.random()
+                                            .toString(36)
+                                            .replace(/[^a-z]+/g, '')
+                                            .substr(0, 5)
+                                    }
+                                    data-event="touchstart focus mouseover"
+                                    data-event-off="mouseout"
                                     classForValue={(value) => {
                                         if (!value) {
                                             return 'color-empty'
@@ -224,7 +234,7 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
                                 'Loading...'
                             )}
                             {runningData.length ? (
-                                <ReactTooltip multiline={true} />
+                                <ReactTooltip multiline={true} id={`${runningData[0].run_id + 'mobile'}`} />
                             ) : null}
                         </div>
                         <div
@@ -335,12 +345,13 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
                         ) : (
                             <p>Loading...</p>
                         )}
+                        {console.log(runningData, 'huh?')}
                         {runningData.length ? (
                             <ReactTooltip
                                 style={{ cursor: 'pointer' }}
                                 globalEventOff={'touchstart'}
                                 multiline={true}
-                                // id={`${runningData[0].run_id}`}
+                                // id={`${runningData[0].run_id + 'mobile'}`}
                             />
                         ) : null}
                     </Card>
