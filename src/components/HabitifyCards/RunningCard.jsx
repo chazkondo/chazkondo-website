@@ -33,16 +33,27 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
         return Math.ceil(meters * 0.0621371192) / 100
     }
 
-    function convertTime(d) {
+    function convertTime(d, rawFormatBool) {
         d = Number(d)
         var h = Math.floor(d / 3600)
         var m = Math.floor((d % 3600) / 60)
         var s = Math.floor((d % 3600) % 60)
 
+        if (rawFormatBool) {
+            return Math.floor(d / 60) + (Math.floor((d % 3600) % 60) / 60)
+        }
+
         var hDisplay = h > 0 ? h + (h == 1 ? ' hour, ' : ' hours, ') : ''
         var mDisplay = m > 0 ? m + (m == 1 ? ' minute, ' : ' minutes, ') : ''
         var sDisplay = s > 0 ? s + (s == 1 ? ' second' : ' seconds') : ''
+
         return hDisplay + mDisplay + sDisplay
+    }
+
+    function convertPace(time) {
+        var seconds = (time - Math.floor(time)) * 60
+        var correctSeconds = seconds.toPrecision(2)
+        return `${Math.floor(time)} minutes ${correctSeconds} seconds per mile`
     }
 
     function checkForSecondRun(data) {
@@ -192,15 +203,15 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
                                     }}
                                     tooltipDataAttrs={(value) => {
                                         if (value.date) {
+                                            let distance = convertMetersToMiles(value.distance)
+                                            let time = convertTime(value.time)
+                                            let time2 = convertTime(value.time, true)
                                             return {
                                                 'data-tip': `${
                                                     value.date
-                                                }:  <br />[ ${convertMetersToMiles(
-                                                    value.distance
-                                                )} miles ]
-                                                <br />[ ${convertTime(
-                                    value.time
-                                )} ]
+                                                }:  <br />[ ${distance} miles ]
+                                                <br />[ ${time} ]
+                                                <br />[ ${convertPace(time2 / distance)} ]
                                 <br />[ ${value.name} ]
                                     ${checkForSecondRun(value)}
                                     `,
@@ -304,13 +315,15 @@ export default function RunningCard({ rawRunningData, currentDate, caption }) {
                                 }}
                                 tooltipDataAttrs={(value) => {
                                     if (value.date) {
+                                        let distance = convertMetersToMiles(value.distance)
+                                        let time = convertTime(value.time)
+                                        let time2 = convertTime(value.time, true)
                                         return {
                                             'data-tip': `${
                                                 value.date
-                                            }:  <br />[ ${convertMetersToMiles(
-                                                value.distance
-                                            )} miles ]
-                                            <br />[ ${convertTime(value.time)} ]
+                                            }:  <br />[ ${distance} miles ]
+                                            <br />[ ${time}} ]
+                                            <br />[ ${convertPace(time2 / distance)} ]
                                             <br />[ ${value.name} ]
                                 ${checkForSecondRun(value)}
                                 `,
