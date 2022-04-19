@@ -1,19 +1,22 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
 
-import { Layout, PostCard, Pagination } from "../components/common"
-import { MetaData } from "../components/common/meta"
+import { Layout, PostCard, Pagination } from "../components/common";
+import { MetaData } from "../components/common/meta";
 
 //css
-import "../assets/css/bootstrap.min.css"
-import "../assets/scss/paper-kit.scss?v=1.2.0"
-import "../assets/demo/demo.css?v=1.2.0"
+import "../assets/css/bootstrap.min.css";
+import "../assets/scss/paper-kit.scss?v=1.2.0";
+import "../assets/demo/demo.css?v=1.2.0";
 
 // util
-import { postsPerPage } from "../utils/siteConfig"
+import { postsPerPage } from "../utils/siteConfig";
 
-import { useInView, InView } from "react-intersection-observer"
+import { useInView, InView } from "react-intersection-observer";
+
+// helmet
+import { Helmet } from "react-helmet";
 
 /**
  * Blog page
@@ -25,77 +28,86 @@ import { useInView, InView } from "react-intersection-observer"
  */
 
 const Blog = ({ data, location, pageContext }) => {
-    const posts = data.allGhostPost.edges
+    const posts = data.allGhostPost.edges;
 
-    const initial = posts.filter((item, index) => index < postsPerPage)
+    const initial = posts.filter((item, index) => index < postsPerPage);
 
-    const [bottomHit, setBottomHit] = React.useState(false)
-    const [currentPosts, setCurrentPosts] = React.useState(initial)
-    const [loadRequests, setLoadRequests] = React.useState(2)
-    const [loading, setLoading] = React.useState(false)
-    const [isCompleted, setIsCompleted] = React.useState(false)
-    const [isSpotted, setIsSpotted] = React.useState(false)
+    const [bottomHit, setBottomHit] = React.useState(false);
+    const [currentPosts, setCurrentPosts] = React.useState(initial);
+    const [loadRequests, setLoadRequests] = React.useState(2);
+    const [loading, setLoading] = React.useState(false);
+    const [isCompleted, setIsCompleted] = React.useState(false);
+    const [isSpotted, setIsSpotted] = React.useState(false);
 
-    const loadingScrollRef = React.useRef(null)
+    const loadingScrollRef = React.useRef(null);
 
     function bottomSpotted(inView) {
         if (inView) {
-            setBottomHit(true)
-            setIsSpotted(true)
+            setBottomHit(true);
+            setIsSpotted(true);
         }
     }
 
     function scrollToLoading() {
-        loadingScrollRef.current.scrollIntoView({ behavior: `smooth` })
+        loadingScrollRef.current.scrollIntoView({ behavior: `smooth` });
     }
 
     function toggleCompletedToTrue() {
-        setIsSpotted(false)
-        setBottomHit(false)
-        return setIsCompleted(true)
+        setIsSpotted(false);
+        setBottomHit(false);
+        return setIsCompleted(true);
     }
 
     React.useEffect(() => {
-        let timeout
+        let timeout;
         if (bottomHit && !isCompleted) {
             if (currentPosts.length >= posts.length) {
-                timeout = setTimeout(() => toggleCompletedToTrue(), 1000)
+                timeout = setTimeout(() => toggleCompletedToTrue(), 1000);
             } else {
-                timeout = setTimeout(() => setLoading(true), 1000)
+                timeout = setTimeout(() => setLoading(true), 1000);
             }
         }
         return () => {
-            clearTimeout(timeout)
-        }
-    }, [bottomHit, isCompleted])
+            clearTimeout(timeout);
+        };
+    }, [bottomHit, isCompleted]);
 
     React.useEffect(() => {
         if (loading) {
-            scrollToLoading()
-            let dataTimeout
+            scrollToLoading();
+            let dataTimeout;
 
             function callForData() {
                 setCurrentPosts(
                     posts.filter(
                         (item, index) => index < postsPerPage * loadRequests
                     )
-                )
-                setLoadRequests(loadRequests => loadRequests + 1)
-                setIsSpotted(false)
-                setBottomHit(false)
-                return setLoading(false)
+                );
+                setLoadRequests((loadRequests) => loadRequests + 1);
+                setIsSpotted(false);
+                setBottomHit(false);
+                return setLoading(false);
             }
 
             if (loading) {
-                dataTimeout = setTimeout(() => callForData(), 3000)
+                dataTimeout = setTimeout(() => callForData(), 3000);
             }
 
-            return () => clearTimeout(dataTimeout)
+            return () => clearTimeout(dataTimeout);
         }
-    }, [loading])
+    }, [loading]);
 
     return (
         <>
+            <Helmet
+                title={"Chaz's random blog. Games, Tech, Music, etc..."}
+                defer={false}
+            >
+                <meta
+                    name="description"
+                    content="This is my laid-back blog where I may write about GSL, NextJS, or nothing at all!"
+                />
+            </Helmet>
             <MetaData location={location} />
             <Layout isHome={true}>
                 <div className="container flexview">
@@ -110,7 +122,7 @@ const Blog = ({ data, location, pageContext }) => {
                     <section className="post-feed">
                         {currentPosts.map(({ node }, index, arr) => {
                             if (node.meta_title !== `Data schema`) {
-                                return <PostCard key={node.id} post={node} />
+                                return <PostCard key={node.id} post={node} />;
                             }
                         })}
                     </section>
@@ -149,8 +161,8 @@ const Blog = ({ data, location, pageContext }) => {
                 <div ref={loadingScrollRef} />
             </Layout>
         </>
-    )
-}
+    );
+};
 
 Blog.propTypes = {
     data: PropTypes.shape({
@@ -160,9 +172,9 @@ Blog.propTypes = {
         pathname: PropTypes.string.isRequired,
     }).isRequired,
     pageContext: PropTypes.object,
-}
+};
 
-export default Blog
+export default Blog;
 // This page query loads all posts sorted descending by published date
 // The `limit` and `skip` values are used for pagination
 export const pageQuery = graphql`
@@ -175,4 +187,4 @@ export const pageQuery = graphql`
             }
         }
     }
-`
+`;

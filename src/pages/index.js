@@ -1,60 +1,60 @@
-import React from 'react'
+import React from "react";
 
 // core components
-import IndexNavbar from '../components/Navbars/IndexNavbar.js'
-import Main from '../components/Main/Main.js'
-import Responsive from '../components/Responsive/Responsive.jsx'
+import IndexNavbar from "../components/Navbars/IndexNavbar.js";
+import Main from "../components/Main/Main.js";
+import Responsive from "../components/Responsive/Responsive.jsx";
 
-import Swatch from '../components/Buttons/Swatch/Swatch.jsx'
+import Swatch from "../components/Buttons/Swatch/Swatch.jsx";
 
 //css
-import '../assets/css/bootstrap.min.css'
-import '../assets/scss/paper-kit.scss?v=1.2.0'
-import '../assets/demo/demo.css?v=1.2.0'
-import '../styles/app.css'
+import "../assets/css/bootstrap.min.css";
+import "../assets/scss/paper-kit.scss?v=1.2.0";
+import "../assets/demo/demo.css?v=1.2.0";
+import "../styles/app.css";
 
 // helper
-import useWindowSize from '../components/Helpers/useWindowSize.js'
+import useWindowSize from "../components/Helpers/useWindowSize.js";
 
 // helmet
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet";
 
 function Index() {
-    const [backgroundDark, setBackgroundDark] = React.useState(false)
-    const [responsiveMode, setResponsiveMode] = React.useState(`block`)
+    const [backgroundDark, setBackgroundDark] = React.useState(false);
+    const [responsiveMode, setResponsiveMode] = React.useState(`block`);
     const [
         responsiveModeSmallScreen,
         setResponsiveModeSmallScreen,
-    ] = React.useState(1)
-    const [animation, setAnimation] = React.useState(true)
-    const [videoDisplay, turnOffVideo] = React.useState(true)
-    const title = `Chaz Kondo - Software Engineer`
+    ] = React.useState(1);
+    const [animation, setAnimation] = React.useState(true);
+    const [videoDisplay, turnOffVideo] = React.useState(true);
+    const title = `Chaz Kondo - Software Engineer`;
 
-    const size = useWindowSize()
+    const size = useWindowSize();
 
     React.useLayoutEffect(() => {
-        const hours = new Date().getHours()
-        const isDayTime = hours > 6 && hours < 18
-        setBackgroundDark(!isDayTime)
-    }, [])
+        const hours = new Date().getHours();
+        const isDayTime = hours > 6 && hours < 18;
+        setBackgroundDark(!isDayTime);
+    }, []);
 
     React.useEffect(() => {
         if (size.height > size.width - size.width / 3) {
-            return setResponsiveMode(`none`)
+            return setResponsiveMode(`none`);
         } else if (size.height < size.width - size.width / 1.9) {
-            return setResponsiveMode(`none`)
+            return setResponsiveMode(`none`);
         } else {
-            return setResponsiveMode(`block`)
+            return setResponsiveMode(`block`);
         }
-    }, [size.width, size.height])
+    }, [size.width, size.height]);
 
     React.useEffect(() => {
         if (size.width < 767) {
-            return setResponsiveModeSmallScreen(1)
+            return setResponsiveModeSmallScreen(1);
         } else {
-            return setResponsiveModeSmallScreen(0)
+            return setResponsiveModeSmallScreen(0);
         }
-    }, [size.width])
+    }, [size.width]);
 
     return (
         <>
@@ -94,6 +94,10 @@ function Index() {
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1, maximum-scale=1"
+                />
+                <meta
+                    name="description"
+                    content="Hi, I'm Chaz. I like to design and create intuitive and streamlined applications. This is my personal website that showcases my random interests."
                 />
                 <link rel="shortcut icon" href="/favicon.jpg" />
                 <script type="application/ld+json">
@@ -141,7 +145,7 @@ function Index() {
                 videoDisplay={videoDisplay}
             />
         </>
-    )
+    );
 }
 
-export default Index
+export default Index;

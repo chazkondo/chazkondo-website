@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import LoaderSVG from './images/loader.gif'
+import React from "react";
+import PropTypes from "prop-types";
+import LoaderSVG from "./images/loader.gif";
 
 export default function HTML(props) {
     return (
@@ -19,6 +19,11 @@ export default function HTML(props) {
                     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
                     crossOrigin="anonymous"
                 />
+                <title>Chaz Kondo - Software Engineer | Music Producer</title>
+                <meta
+                    name="description"
+                    content="Hi, I'm Chaz. I like to design and create intuitive and streamlined applications. This is my personal website that showcases my random interests."
+                ></meta>
             </head>
             <body {...props.bodyAttributes}>
                 {props.preBodyComponents}
@@ -95,7 +100,7 @@ export default function HTML(props) {
                 {props.postBodyComponents}
             </body>
         </html>
-    )
+    );
 }
 
 HTML.propTypes = {
@@ -105,4 +110,4 @@ HTML.propTypes = {
     preBodyComponents: PropTypes.array,
     body: PropTypes.string,
     postBodyComponents: PropTypes.array,
-}
+};
