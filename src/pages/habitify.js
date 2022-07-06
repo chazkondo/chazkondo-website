@@ -120,22 +120,22 @@ export default function Habitify() {
     //     return () => (mounted = false);
     // }, [loadingArr, loadingAllHabits]);
 
-    React.useEffect(() => {
-        axios
-            .get(`https://youthful-elion-58e63d.netlify.app/api/running`)
-            .then(async (res) => {
-                let copy = specificHabits.slice();
+    // React.useEffect(() => {
+    //     axios
+    //         .get(`https://youthful-elion-58e63d.netlify.app/api/running`)
+    //         .then(async (res) => {
+    //             let copy = specificHabits.slice();
 
-                setRawRunningData(await res.data);
+    //             setRawRunningData(await res.data);
 
-                copy.find((habit) => habit.name === "Running").loading =
-                    "complete";
+    //             copy.find((habit) => habit.name === "Running").loading =
+    //                 "complete";
 
-                setSpecificHabits(copy);
-                setLoadingArr((previous) => [...previous, "Runnning"]);
-            })
-            .catch((err) => console.log("FAILED GETTING DATA", err));
-    }, []);
+    //             setSpecificHabits(copy);
+    //             setLoadingArr((previous) => [...previous, "Runnning"]);
+    //         })
+    //         .catch((err) => console.log("FAILED GETTING DATA", err));
+    // }, []);
 
     React.useEffect(() => {
         specificHabits.forEach((habit, i) => {
@@ -356,7 +356,7 @@ export default function Habitify() {
                                             : ``,
                                 }}
                             >
-                                Skills
+                                Overall Habits
                             </h4>
                         </NavLink>
                     </NavItem> */}
@@ -425,10 +425,10 @@ export default function Habitify() {
                                 caption={
                                     <a
                                         className="basic-link"
-                                        href="https://gettingthingsdone.com/"
-                                        alt="Getting Things Done by David Allen"
+                                        href="https://nutritionfacts.org/"
+                                        alt="Dr. Greger"
                                     >
-                                        [GTD Methodology]
+                                        [Nutrition Facts]
                                     </a>
                                 }
                             />
@@ -441,10 +441,10 @@ export default function Habitify() {
                                 caption={
                                     <a
                                         className="basic-link"
-                                        href="https://gettingthingsdone.com/"
-                                        alt="Getting Things Done by David Allen"
+                                        href="https://drhyman.com/"
+                                        alt="Dr. Hyman"
                                     >
-                                        [GTD Methodology]
+                                        [Ultra Mind Solution]
                                     </a>
                                 }
                             />
