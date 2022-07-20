@@ -332,7 +332,7 @@ export default function Habitify() {
                                 }}
                                 alt="Core is the foundational habits that I am able to build upon to sharpen my edge in all other aspects of my life"
                             >
-                                Current 30 Day Habits
+                                Current 23 Day Habits
                             </h4>
                         </NavLink>
                     </NavItem>
