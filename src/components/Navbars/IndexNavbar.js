@@ -17,6 +17,7 @@ import {
 } from "reactstrap";
 
 import HabitifyIcon from "../../assets/img/habitify.jsx";
+import LeetcodeIcon from "../../assets/img/leetcode.jsx";
 
 import { StaticQuery, graphql } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -431,6 +432,29 @@ function IndexNavbar(props) {
                                         >
                                             <NavLink
                                                 className="tooltip"
+                                                href="https://www.leetcode.com/chazkondo"
+                                                target="_blank"
+                                                title="My LeetCode Progress"
+                                            >
+                                                <LeetcodeIcon
+                                                    backgroundDark={
+                                                        props.backgroundDark
+                                                    }
+                                                />
+                                                <p className="d-lg-none">
+                                                    {` `}
+                                                    LeetCode
+                                                </p>
+                                                <span className="tooltiptext">
+                                                    LeetCode
+                                                </span>
+                                            </NavLink>
+                                        </NavItem>
+                                        <NavItem
+                                            className={`d-none d-lg-block`}
+                                        >
+                                            <NavLink
+                                                className="tooltip"
                                                 data-placement="bottom"
                                                 href="/habitify"
                                                 title="My progress"
@@ -518,20 +542,6 @@ function IndexNavbar(props) {
                                                         title="Home"
                                                     >
                                                         Home
-                                                    </NavLink>
-                                                </NavItem>
-                                                <NavItem>
-                                                    <NavLink
-                                                        className="tooltip"
-                                                        data-placement="bottom"
-                                                        // href="mailto:clutterfreehawaii@gmail.com"
-                                                        target="_blank"
-                                                        title="Check Out My Portfolio"
-                                                    >
-                                                        Projects
-                                                        <span className="tooltiptext">
-                                                            Coming Soon
-                                                        </span>
                                                     </NavLink>
                                                 </NavItem>
                                                 <Dropdown
