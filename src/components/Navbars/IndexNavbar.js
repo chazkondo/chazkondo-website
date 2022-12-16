@@ -301,18 +301,6 @@ function IndexNavbar(props) {
                                                 <hr />
                                             </NavLink>
                                         </NavItem>
-                                        {tier === 1 && (
-                                            <NavItem>
-                                                <p
-                                                    style={{
-                                                        fontSize: `1em`,
-                                                        opacity: 0.8,
-                                                    }}
-                                                >
-                                                    Social Media
-                                                </p>
-                                            </NavItem>
-                                        )}
                                         <NavItem
                                             className={
                                                 tier === 1
@@ -334,7 +322,10 @@ function IndexNavbar(props) {
                                                         `linkedin-in`,
                                                     ]}
                                                 />
-                                                <p className="d-lg-none">
+                                                <p
+                                                    style={{ paddingLeft: 20 }}
+                                                    className="d-lg-none"
+                                                >
                                                     {` `}
                                                     Linked In
                                                 </p>
@@ -361,7 +352,10 @@ function IndexNavbar(props) {
                                                     size={`lg`}
                                                     icon={[`fab`, `facebook`]}
                                                 />
-                                                <p className="d-lg-none">
+                                                <p
+                                                    style={{ paddingLeft: 20 }}
+                                                    className="d-lg-none"
+                                                >
                                                     {` `}
                                                     Facebook
                                                 </p>
@@ -388,7 +382,10 @@ function IndexNavbar(props) {
                                                     size={`lg`}
                                                     icon={[`fab`, `instagram`]}
                                                 />
-                                                <p className="d-lg-none">
+                                                <p
+                                                    style={{ paddingLeft: 20 }}
+                                                    className="d-lg-none"
+                                                >
                                                     {` `}
                                                     Instagram
                                                 </p>
@@ -418,7 +415,10 @@ function IndexNavbar(props) {
                                                     size={`lg`}
                                                     icon={[`fab`, `github`]}
                                                 />
-                                                <p className="d-lg-none">
+                                                <p
+                                                    style={{ paddingLeft: 20 }}
+                                                    className="d-lg-none"
+                                                >
                                                     {` `}
                                                     Github
                                                 </p>
@@ -441,7 +441,10 @@ function IndexNavbar(props) {
                                                         props.backgroundDark
                                                     }
                                                 />
-                                                <p className="d-lg-none">
+                                                <p
+                                                    style={{ paddingLeft: 20 }}
+                                                    className="d-lg-none"
+                                                >
                                                     {` `}
                                                     LeetCode
                                                 </p>
@@ -464,7 +467,10 @@ function IndexNavbar(props) {
                                                         props.backgroundDark
                                                     }
                                                 />
-                                                <p className="d-lg-none">
+                                                <p
+                                                    style={{ paddingLeft: 20 }}
+                                                    className="d-lg-none"
+                                                >
                                                     {` `}
                                                     Habitify
                                                 </p>
@@ -597,6 +603,26 @@ function IndexNavbar(props) {
                                             }}
                                         >
                                             <NavLink
+                                                style={{ cursor: `pointer` }}
+                                                onClick={() => {
+                                                    changeTier(1);
+                                                }}
+                                                data-placement="bottom"
+                                                title="Connect with me!"
+                                            >
+                                                Connect
+                                            </NavLink>
+                                        </NavItem>
+                                        <NavItem
+                                            className="d-lg-none"
+                                            style={{
+                                                display:
+                                                    tier === 0
+                                                        ? `block`
+                                                        : `none`,
+                                            }}
+                                        >
+                                            <NavLink
                                                 onClick={() =>
                                                     toggleNavbarCollapse()
                                                 }
@@ -617,14 +643,14 @@ function IndexNavbar(props) {
                                             }}
                                         >
                                             <NavLink
-                                                style={{ cursor: `pointer` }}
-                                                onClick={() => {
-                                                    changeTier(1);
-                                                }}
+                                                onClick={() =>
+                                                    toggleNavbarCollapse()
+                                                }
                                                 data-placement="bottom"
-                                                title="Follow us on Social Media"
+                                                href="https://www.leetcode.com/chazkondo"
+                                                title="My LeetCode Progress"
                                             >
-                                                Social Media
+                                                LeetCode
                                             </NavLink>
                                         </NavItem>
                                         <NavItem
